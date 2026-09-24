@@ -1,74 +1,470 @@
-<h1>Mi página web</h1>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi mundo gamer</title>
 
     <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f3e8ff;
             margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b1020;
+            color: white;
+            transition: 0.5s;
+        }
+
+        /* MENU */
+
+        nav {
+            background-color: #111936;
+            padding: 18px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00e5ff;
+        }
+
+        /* PORTADA */
+
+        .inicio {
+            height: 550px;
+
+            background-image:
+            linear-gradient(rgba(5, 10, 30, 0.65), rgba(5, 10, 30, 0.85)),
+            url("https://images.unsplash.com/photo-1542751371-adc38448a05e");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
 
-        header {
-            background-color: #6a0dad;
-            color: white;
-            padding: 30px;
-        }
-
-        h1 {
-            font-size: 40px;
+        .inicio h1 {
+            font-size: 60px;
             margin: 0;
+            animation: aparecer 2s;
         }
 
-        .contenido {
-            background-color: white;
-            width: 70%;
-            margin: 30px auto;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px #999;
+        .inicio p {
+            font-size: 20px;
         }
+
+        /* BOTONES */
 
         button {
-            background-color: #6a0dad;
-            color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 13px 25px;
             border-radius: 25px;
+            background-color: #00e5ff;
+            color: #07101d;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
+            transition: 0.3s;
+            margin: 10px;
         }
 
         button:hover {
-            background-color: #4b087c;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #00e5ff;
         }
 
-        footer {
-            background-color: #222;
-            color: white;
-            padding: 20px;
+        /* SECCIONES */
+
+        section {
+            padding: 60px 10%;
+            text-align: center;
         }
+
+        section h2 {
+            font-size: 35px;
+            color: #00e5ff;
+        }
+
+        .texto {
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* TARJETAS */
+
+        .tarjetas {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+        }
+
+        .tarjeta {
+            width: 280px;
+            background-color: #151d3b;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 10px 30px rgba(0,229,255,0.4);
+        }
+
+        .tarjeta img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .tarjeta h3 {
+            color: #00e5ff;
+        }
+
+        .tarjeta p {
+            padding: 0 15px;
+            line-height: 1.5;
+        }
+
+        /* INFORMACION EXTRA */
+
+        #informacion {
+            display: none;
+            background-color: #111936;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+
+        /* TEMA CLARO */
+
+        .claro {
+            background-color: #e8f1f5;
+            color: #17202a;
+        }
+
+        .claro nav {
+            background-color: #263238;
+        }
+
+        .claro .tarjeta {
+            background-color: white;
+            color: #17202a;
+        }
+
+        .claro .info {
+            background-color: #d5e5eb;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background-color: #070b18;
+            text-align: center;
+            padding: 30px;
+            color: #aaa;
+        }
+
+        footer strong {
+            color: #00e5ff;
+        }
+
+        /* ANIMACION */
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
     </style>
 </head>
 
+
 <body>
 
-    <header>
-        <h1>Mi página web</h1>
-        <p>Bienvenidos a mi sitio</p>
-    </header>
+    <!-- MENU -->
 
-    <div class="contenido">
-        <h2>Sobre nosotros</h2>
-        <p>
-            Esta es una página web creada con HTML y CSS.
-        </p>
+    <nav>
 
-        <button>Conocer más</button>
+        <a href="#inicio">Inicio</a>
+
+        <a href="#sobre">Información</a>
+
+        <a href="#juegos">Videojuegos</a>
+
+        <button onclick="cambiarTema()">
+            Cambiar tema
+        </button>
+
+    </nav>
+
+
+    <!-- PORTADA -->
+
+    <div class="inicio" id="inicio">
+
+        <div>
+
+            <h1>Mi mundo gamer</h1>
+
+            <p>
+                Un espacio dedicado a los videojuegos
+                y al entretenimiento.
+            </p>
+
+            <button onclick="irAJuegos()">
+                Explorar videojuegos
+            </button>
+
+        </div>
+
     </div>
 
+
+    <!-- OBJETIVO -->
+
+    <section id="sobre">
+
+        <h2>¿Cuál es el objetivo?</h2>
+
+        <p class="texto">
+
+            El objetivo de esta página es compartir información
+            sobre los videojuegos y mostrar por qué forman parte
+            de una de mis formas favoritas de entretenimiento.
+
+            También es una manera de aprender a crear y diseñar
+            una página web utilizando HTML y CSS.
+
+        </p>
+
+    </section>
+
+
+    <!-- INFORMACION -->
+
+    <section class="info">
+
+        <h2>¿Qué son los videojuegos?</h2>
+
+        <p class="texto">
+
+            Los videojuegos son programas interactivos que
+            permiten a los usuarios participar en diferentes
+            historias, desafíos y experiencias.
+
+            Existen diferentes géneros como acción, aventura,
+            deportes, carreras y estrategia.
+
+        </p>
+
+        <button onclick="mostrarInfo()">
+            Ver más información
+        </button>
+
+        <div id="informacion">
+
+            <h3>Dato interesante</h3>
+
+            <p>
+                Los videojuegos pueden tener diferentes estilos
+                y formas de jugar. Algunos están diseñados para
+                jugar individualmente y otros permiten jugar
+                con amigos.
+            </p>
+
+            <button onclick="cerrarInfo()">
+                Cerrar información
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- VIDEOJUEGOS -->
+
+    <section id="juegos">
+
+        <h2>Algunos videojuegos</h2>
+
+        <div class="tarjetas">
+
+
+            <!-- TARJETA 1 -->
+
+            <div class="tarjeta">
+
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e">
+
+                <h3>Videojuegos</h3>
+
+                <p>
+                    Los videojuegos permiten explorar
+                    diferentes mundos y superar retos.
+                </p>
+
+                <button onclick="mensaje('Los videojuegos permiten vivir diferentes experiencias y superar desafíos.')">
+                    Saber más
+                </button>
+
+            </div>
+
+
+            <!-- TARJETA 2 -->
+
+            <div class="tarjeta">
+
+                <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8">
+
+                <h3>Entretenimiento</h3>
+
+                <p>
+                    También pueden ser una forma de pasar
+                    tiempo y compartir con amigos.
+                </p>
+
+                <button onclick="mensaje('Jugar puede ser una actividad de entretenimiento y una forma de compartir.')">
+                    Saber más
+                </button>
+
+            </div>
+
+
+            <!-- TARJETA 3 -->
+
+            <div class="tarjeta">
+
+                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575">
+
+                <h3>Competencia</h3>
+
+                <p>
+                    Algunos juegos permiten competir
+                    y superar diferentes desafíos.
+                </p>
+
+                <button onclick="mensaje('Los juegos competitivos permiten enfrentarse a diferentes desafíos.')">
+                    Saber más
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OPINION -->
+
+    <section>
+
+        <h2>Mi opinión</h2>
+
+        <p class="texto">
+
+            Los videojuegos me parecen una buena forma de
+            entretenimiento. Lo interesante es que existen
+            diferentes tipos de juegos y cada persona puede
+            encontrar uno de su interés.
+
+        </p>
+
+    </section>
+
+
+    <!-- PIE -->
+
     <footer>
-        <p>© 2026 Mi página web</p>
+
+        <p>
+            Página web creada como proyecto de HTML y CSS.
+        </p>
+
+        <p>
+            <strong>Creado por Leonardo Osorio</strong>
+        </p>
+
+        <p>
+            2026
+        </p>
+
     </footer>
 
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function irAJuegos() {
+
+            document.getElementById("juegos").scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        function mostrarInfo() {
+
+            document.getElementById("informacion").style.display = "block";
+
+        }
+
+
+        function cerrarInfo() {
+
+            document.getElementById("informacion").style.display = "none";
+
+        }
+
+
+        function mensaje(texto) {
+
+            alert(texto);
+
+        }
+
+
+        function cambiarTema() {
+
+            document.body.classList.toggle("claro");
+
+        }
+
+    </script>
+
 </body>
+
 </html>
